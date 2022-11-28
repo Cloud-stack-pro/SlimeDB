@@ -43,6 +43,7 @@ SlimeDB.query = function queryTable( slimeDB, callback ) {
     if ( typeof callback !== "function" ) throw Error("Callback is not a function.");
     const table = require( slimeDB.tableFile );
     !callback( table );
+    return true;
 }
 
 /**
@@ -64,6 +65,25 @@ SlimeDB.insert = function insertTable( slimeDB, data ) {
     const table = require( slimeDB.tableFile ); table.push( newData );
     const tableData =  JSON.stringify( table, null, 4 );
     fs.writeFileSync( slimeDB.tableFile, tableData );
+    return true;
+}
+
+/**
+ * @param { SlimeDB } slimeDB new SlimeDB(tableName).
+ * @param { Function } filter Callback data to function.
+ * @param { { } } data Object data insert to slime table.
+ * @return { void }
+ */
+SlimeDB.update = function updateTable( slimeDB, filter, data ) {
+    if ( slimeDB?.constructor?.name !== "SlimeDB" ) throw Error("argument slimeDB is not class SlimeDB.");
+    if ( typeof filter !== "function" ) throw Error("Callback is not a filter function.");
+    if ( typeof data !== "object" ) throw Error("Data is not a object.");
+    const table = require( slimeDB.tableFile );
+    const result = table.find( filter );
+    result && Object.assign( result, data );
+    const tableData =  JSON.stringify( table, null, 4 );
+    fs.writeFileSync( slimeDB.tableFile, tableData );
+    return result ? true : false;
 }
 
 /**
@@ -80,6 +100,7 @@ SlimeDB.delete = function deleteTable( slimeDB, filter ) {
     ( index >= 0 ) && table.splice( index, 1 );
     const tableData = JSON.stringify( table, null, 4 );
     fs.writeFileSync( slimeDB.tableFile, tableData );
+    return ( index >= 0 ) ? true : false;
 }
 
 /**
