@@ -29,9 +29,14 @@ mysqli.insert( member, {
     age: 20
 });
 
+// Update data
+mysqli.update( member, i => i.username == "kingslimes", {
+    active: true
+});
+
 // Delete data from tabel < class table >
 mysqli.delete( member, i => i.username == "kingslimes" ); // this removed 
 
-// Remove data table ( delete all data in table )
-mysqli.removeTable( member );
+// Destroy table ( delete all data in table )
+member.destroy();
 ```
