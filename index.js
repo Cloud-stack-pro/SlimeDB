@@ -23,6 +23,15 @@ class SlimeDB {
             !fs.existsSync( this.tableFile ) && fs.writeFileSync( this.tableFile, "[]" );
             return this
         };
+        
+        /**
+         * @return { void } destroy table
+         */
+        this.destroy = function destroy() {
+            const file = fs.existsSync( this.tableFile );
+            file && fs.unlinkSync( this.tableFile );
+            return file ? true : false;
+        };
     }
     static DataType = {
         PRIMARY: "primary_key",
@@ -102,13 +111,4 @@ SlimeDB.delete = function deleteTable( slimeDB, filter ) {
     fs.writeFileSync( slimeDB.tableFile, tableData );
     return ( index >= 0 ) ? true : false;
 }
-
-/**
- * @param { SlimeDB } slimeDB new SlimeDB(tableName).
- * @return { void }
- */
-SlimeDB.removeTable = function removeTable( slimeDB ) {
-    return fs.existsSync( slimeDB.tableFile ) ? fs.unlinkSync( slimeDB.tableFile ) : false;
-}
-
 module.exports = SlimeDB;
