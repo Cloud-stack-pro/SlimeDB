@@ -1,8 +1,8 @@
 # SlimeDB
-Last version 2.0.0
+Last version 3.0.0
 ## install
 ``` js
-npm install slimedb@2.0.0
+npm install slimedb
 ```
 ## example to use 
 ``` js
