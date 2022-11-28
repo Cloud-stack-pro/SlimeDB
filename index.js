@@ -59,7 +59,7 @@ SlimeDB.insert = function insertTable( slimeDB, data ) {
         slimeDB.tableModel[key] == SlimeDB.DataType.BOOLEAN && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : Boolean( data[key] ) );
         slimeDB.tableModel[key] == SlimeDB.DataType.PRIMARY && ( newData[key] = shortid.generate() );
         slimeDB.tableModel[key] == SlimeDB.DataType.NUMBER && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : Number( data[key] ) );
-        slimeDB.tableModel[key] == SlimeDB.DataType.PRIMARY && ( newData[key] = new Date().toLocaleString() );
+        slimeDB.tableModel[key] == SlimeDB.DataType.DATETIME && ( newData[key] = new Date().toLocaleString() );
     });
     const table = require( slimeDB.tableFile ); table.push( newData );
     const tableData =  JSON.stringify( table, null, 4 );
