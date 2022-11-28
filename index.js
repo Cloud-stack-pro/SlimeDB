@@ -48,6 +48,7 @@ class SlimeDB {
  * @return { void }
  */
 SlimeDB.query = function queryTable( slimeDB, callback ) {
+    if ( !fs.existsSync( slimeDB.tableFile ) ) throw Error("Table not found.");
     if ( slimeDB?.constructor?.name !== "SlimeDB" ) throw Error("argument slimeDB is not class SlimeDB.");
     if ( typeof callback !== "function" ) throw Error("Callback is not a function.");
     const table = require( slimeDB.tableFile );
@@ -61,6 +62,7 @@ SlimeDB.query = function queryTable( slimeDB, callback ) {
  * @return { void }
  */
 SlimeDB.insert = function insertTable( slimeDB, data ) {
+    if ( !fs.existsSync( slimeDB.tableFile ) ) throw Error("Table not found.");
     if ( slimeDB?.constructor?.name !== "SlimeDB" ) throw Error("argument slimeDB is not class SlimeDB.");
     if ( typeof data !== "object" ) throw Error("Data is not a object.");
     const newData = slimeDB.tableModel ? new Object() : data;
@@ -84,6 +86,7 @@ SlimeDB.insert = function insertTable( slimeDB, data ) {
  * @return { void }
  */
 SlimeDB.update = function updateTable( slimeDB, filter, data ) {
+    if ( !fs.existsSync( slimeDB.tableFile ) ) throw Error("Table not found.");
     if ( slimeDB?.constructor?.name !== "SlimeDB" ) throw Error("argument slimeDB is not class SlimeDB.");
     if ( typeof filter !== "function" ) throw Error("Callback is not a filter function.");
     if ( typeof data !== "object" ) throw Error("Data is not a object.");
@@ -101,6 +104,7 @@ SlimeDB.update = function updateTable( slimeDB, filter, data ) {
  * @return { void }
  */
 SlimeDB.delete = function deleteTable( slimeDB, filter ) {
+    if ( !fs.existsSync( slimeDB.tableFile ) ) throw Error("Table not found.");
     if ( slimeDB?.constructor?.name !== "SlimeDB" ) throw Error("argument slimeDB is not class SlimeDB.");
     if ( typeof filter !== "function" ) throw Error("Callback is not a filter function.");
     const table = require( slimeDB.tableFile );
