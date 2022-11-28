@@ -1,0 +1,19 @@
+{
+  "name": "slimedb",
+  "version": "2.0.0",
+  "description": "Database for server",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [
+    "Database",
+    "mysql",
+    "db"
+  ],
+  "author": "kingslimes",
+  "license": "MIT",
+  "dependencies": {
+    "shortid": "^2.2.16"
+  }
+}
