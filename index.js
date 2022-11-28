@@ -105,7 +105,7 @@ SlimeDB.delete = function deleteTable( slimeDB, filter ) {
     if ( typeof filter !== "function" ) throw Error("Callback is not a filter function.");
     const table = require( slimeDB.tableFile );
     const object = table.find( filter );
-    const index = dataTable.indexOf( object );
+    const index = table.indexOf( object );
     ( index >= 0 ) && table.splice( index, 1 );
     const tableData = JSON.stringify( table, null, 4 );
     fs.writeFileSync( slimeDB.tableFile, tableData );
