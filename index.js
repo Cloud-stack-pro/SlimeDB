@@ -37,6 +37,7 @@ class SlimeDB {
         PRIMARY: "primary_key",
         STRING: "str",
         VARCHAR: "varchar",
+        STRING: "str",
         NUMBER: "int",
         DATETIME: "datetime",
         BOOLEAN: "bool"
