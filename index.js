@@ -68,7 +68,8 @@ SlimeDB.insert = function insertTable( slimeDB, data ) {
     if ( typeof data !== "object" ) throw Error("Data is not a object.");
     const newData = slimeDB.tableModel ? new Object() : data;
     slimeDB.tableModel && Object.keys( slimeDB.tableModel ).forEach( key => {
-        slimeDB.tableModel[key] == SlimeDB.DataType.VARCHAR && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : String( data[key] ) );
+        slimeDB.tableModel[key] == SlimeDB.DataType.VARCHAR && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : data[key] );
+        slimeDB.tableModel[key] == SlimeDB.DataType.STRING && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : String( data[key] ) );
         slimeDB.tableModel[key] == SlimeDB.DataType.BOOLEAN && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : Boolean( data[key] ) );
         slimeDB.tableModel[key] == SlimeDB.DataType.PRIMARY && ( newData[key] = shortid.generate() );
         slimeDB.tableModel[key] == SlimeDB.DataType.NUMBER && ( newData[key] = ( typeof data[key] == "undefined" ) ? null : Number( data[key] ) );
