@@ -1,5 +1,5 @@
 # SlimeDB
-Last version 3.0.0
+Last version 3.2.1
 ## install
 ``` js
 npm install slimedb
