@@ -35,6 +35,7 @@ class SlimeDB {
     }
     static DataType = {
         PRIMARY: "primary_key",
+        STRING: "str",
         VARCHAR: "varchar",
         NUMBER: "int",
         DATETIME: "datetime",
